@@ -1,32 +1,14 @@
 <?php
 
     use Req\GetRequest as Request;
+    use view\MyView as viewer;
+    use Controll\AplicationControll as Controll;
 
-    Route::GET("viewer/{id}", function($id){
-        $myview = new MyView();
-        //return $myview->view("new");
-        echo "hello to my page " . $id;
-    });
 
-   Route::GET("viewer2/{id}/json/{name}", function($id, $name){
 
-        $myview = new MyView();
-        //return $myview->view("new");
-        echo "CEP =  " . $id;
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "viacep.com.br/ws/{$id}/json/");
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        $exec = curl_exec($curl);
-        curl_close($curl);
-        echo "<pre>" . $exec . "</pre>";
-        echo "Acessado Por {$name}";
-
-    });
 
 
     Route::Get("/", function(){
-
-
 
       $request = Request::Get("name");
 
@@ -35,13 +17,37 @@
     });
 
 
-    Route::Get("search/aplication/{id}/user/{name}", function($id, $name){
-        echo "Testando Esta Pagina , busca na aplicação de id {$id} no usuário de nome {$name}";
+    Route::Get("produtos", function(){
+
+        $controll =  new Controll();
+        return $controll->Produts();
+
+    });
+
+    Route::Get("adicionar", function(){
+
+        $controll =  new Controll();
+        return $controll->add();
+
+    });
+
+    Route::Post("add_prod", function(){
+
+        $controll =  new Controll();
+        return $controll->add_prod();
+
+    });
+
+    Route::Get("detail/{id}", function($id){
+
+        $controll = new Controll();
+        $controll->details($id);
+        
     });
 
 
+    Route::Get("json", function(){
 
-
-    Route::Get("link/otherlink/{id}/{option}/{name}", function($id, $option, $name){
-        echo "Acessou Esta Página A Procura Do id {$id}, nome {$name}, para fazer {$option}";
+        $controll =  new Controll();
+        echo $controll->json();
     });

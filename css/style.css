@@ -1,89 +1,14 @@
-.view_window{
-
-    width: 80%;
-    height: 500px;
-    box-shadow: 1px 1px 1px black;
-    margin: 20px auto;
-    padding: 10px;
-    overflow: auto;
-    position: relative;
-    background-color: rgba(0, 0, 0, 0.9);
-    border-radius: 5px;
-
+nav.navbar.navbar-default{
+	background-color: #337ab7;
+	border-color: #2e6da4;
+	margin-top: 10px;
 }
 
-.insert_commands{
-  position: absolute;
-  width: 98%;
-  min-height: 30px;
-  bottom: 0;
-
+nav.navbar.navbar-default a {
+	color: white;
 }
 
-.view_results{
-  position: relative;
-  width: 100%;
-  max-height: 75%;
-  overflow: auto;
-}
-
-.info{
-  text-align:center;
-  padding: 5px;
-  color: lightgray;
-}
-
-.line_command{
-  width:98%;
-  height: 10%;
-
-}
-
-.v_comands{
-  color:white;
-  font-size: 13px;
-  line-height: 1.6;
-  text-indent: 4px;
-}
-
-.v_comands:hover{
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.v_comands:active .cm .view_hours{
-  color: black;
-}
-
-.v_comands:active{
-  background-color: white;
-}
-
-
-.form-control{
-  background-color: rgba(0,0,0,0.4);
-  color:white;
-  border: none;
-  width:100%;
-
-}
-.Command{
-  color:red;
-}
-
-.form-control:focus{
-  border:none;
-  -webkit-box-shadow: 1px 1px 1px black;
-          box-shadow: inset 0 1px 0px black, 0 0 1px black;
-}
-
-[contenteditable] {
-  border: 1px solid #000;
-  line-height: 1.4em;
-  -webkit-appearance: textfield;
-  appearance: textfield;
-}
-
-.insert_hours{
-  float: right;
-  margin-right: 10px;
+li p.navbar-text, a.navbar-brand {
+	color: white!important;
+	font-weight: bolder;
 }

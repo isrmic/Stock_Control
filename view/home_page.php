@@ -10,6 +10,7 @@
 
     <!-- Bootstrap -->
     <link href="http://localhost/stock_control/css/bootstrap.min.css" rel="stylesheet">
+    <link href = "http://localhost/stock_control/css/style.css" rel = "stylesheet">
 
   <body>
 

@@ -31,7 +31,6 @@ class GetRequest{
                     }
                 }
 
-
             }
 
             else {
@@ -50,7 +49,7 @@ class GetRequest{
             $Request = array();
             if(count(func_num_args())  >= 1){
 
-                $params = count(func_num_args()) >= 1 ?func_get_args():func_get_arg(0);
+                $params = count(func_num_args()) > 1 ? func_get_args(): is_array(func_get_arg(0)) ? func_get_arg(0) : func_get_args();
 
                 if(isset($params['not']) && count($params['not']) > 0){
                     foreach($_POST as $key => $value){
@@ -59,9 +58,10 @@ class GetRequest{
                         }
                     }
                 }
+
                 else {
                     for($i = 0; $i<count($params); $i++){
-                        $Request[$params[$i]] = $_POST[$params[$i]]??$params[$i] . " Indefinido";
+                        $Request[$params[$i]] = $_POST[$params[$i]] ?? $params[$i] . " Indefinido";
                     }
                 }
 
