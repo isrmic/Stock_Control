@@ -1,0 +1,88 @@
+body{
+  background: #FFF1D6 url("../img/screenshot_56.png") no-repeat fixed;
+  background-size: cover;
+  font-family: "Lucida Grade", "Lucida Sans Unicode", verdana, sans serif;
+  line-height: 1.6;
+
+}
+
+.container{
+  margin: 0 auto;
+  width: 968px;
+}
+
+
+.places{
+  float:left;
+  width: 660px
+}
+
+.place{
+  background-color: #FFF;
+  border-color: #CCC #999 #999 #CCC;
+  border:1px solid #CCC;
+  margin-bottom: 20px;
+  padding: 10px;
+
+}
+
+.place h2{
+  border-bottom: 1px dashed #7E9F19;
+  margin: 0;
+}
+
+.place h3{
+  border-bottom: 1px solid black;
+  margin: 0;
+  color: red;
+}
+
+.place p{
+  text-indent: 10px;
+  font-weight: bold;
+  color: darkgray;
+}
+
+.place a{
+  color: #2C88A7;
+  font-weight: bold;
+  text-decoration: none;
+}
+.place a:hover{
+  text-decoration: underline;
+  color: #CCC;
+}
+
+.place a:visited{
+  color: darkred;
+}
+.place img{
+  float:left;
+  border:1px solid #7E9F19;
+  margin: 10px 10px 0 0;
+  padding: 2px;
+}
+
+.place .both{
+  clear: both;
+}
+
+.footer{
+  font-size: 12px;
+  text-align: center;
+}
+
+.sidenote {
+  background-color: #FFFBE4;
+  border: 1px solid #C9BC8F;
+  float: right;
+  padding: 10px;
+  width: 260px;
+}
+.sidenote h3 {
+  font-size: 14px;
+  margin-top: 0;
+}
+.sidenote ol {
+  font-size:12px;
+}

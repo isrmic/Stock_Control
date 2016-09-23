@@ -1,0 +1,52 @@
+@font-face {
+	font-family: "frm-type0";
+	src: url("../fonts/Buran-USSR.ttf");
+	}
+
+	@font-face {
+	font-family: "frm-type1";
+	src: url("../fonts/cumulus.ttf");
+	}
+
+  @font-face {
+	font-family: "frm-type2-1";
+	src: url("../fonts/open-sans/OpenSans-Bold.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-2";
+	src: url("../fonts/open-sans/OpenSans-BoldItalic.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-3";
+	src: url("../fonts/open-sans/OpenSans-ExtraBold.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-4";
+	src: url("../fonts/open-sans/OpenSans-ExtraBoldItalic.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-5";
+	src: url("../fonts/open-sans/OpenSans-Italic.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-6";
+	src: url("../fonts/open-sans/OpenSans-Light.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-7";
+	src: url("../fonts/open-sans/OpenSans-LightItalic.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-8";
+	src: url("../fonts/open-sans/OpenSans-Regular.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-9";
+	src: url("../fonts/open-sans/OpenSans-Semibold.ttf");
+	}
+  @font-face {
+	font-family: "frm-type2-10";
+	src: url("../fonts/open-sans/OpenSans-SemiboldItalic.ttf");
+	}
+
+ @import url(https:/../fonts.googleapis.com/css?family=Open+Sans);

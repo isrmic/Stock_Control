@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Estudos!</title>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <meta charset="utf-8">
+        <meta name="description" content="Just Estudy">
+        <meta name="author" content="Pedro Souza">
+        <meta name="language" content="pt-br">
+        <style type="text/css">
+            #btn {
+        font-size: 30px;
+                padding: 90px;
+                margin-bottom: 10px;
+            }
+            #formu {
+                position: block;
+            }
+            #btn:hover {
+                font-size: 40px;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <div class="form-group">
+                <form method="POST" id="lal">
+                    <div class="col-xs-3" id="formu">
+                        <label for="num1">Primero número:</label>
+                        <input type="text" name="num1" class="form-control" id="num1" placeholder="Primeiro número:">
+                        <label for="num2">Segundo número:</label>
+                        <input type="text" name="num2" class="form-control" id="num2" placeholder="Segundo número:">
+                    </div>
+                    <button type="submit" class="btn btn-danger" id="btn">Calcular!</button>
+                </form>
+            </div>
+        </section>
+        <script type="text/javascript" src="front/js/script.js"></script>
+    </body>
+</html>
