@@ -27,7 +27,7 @@ class GetRequest{
                 }
                 else {
                     for($i = 0; $i<count($params); $i++){
-                        $Request[$params[$i]] = $_GET[$params[$i]]??$params[$i] . " Indefinido";
+                        $Request[$params[$i]] = $_GET[$params[$i]]??null;
                     }
                 }
 
@@ -61,7 +61,7 @@ class GetRequest{
 
                 else {
                     for($i = 0; $i<count($params); $i++){
-                        $Request[$params[$i]] = $_POST[$params[$i]] ?? $params[$i] . " Indefinido";
+                        $Request[$params[$i]] = $_POST[$params[$i]] ??null;
                     }
                 }
 

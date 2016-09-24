@@ -1,9 +1,9 @@
 <?php
-  if(count($produtos) > 0 ){
+  if(count($produto) > 0 ):
 ?>
 <div class="page-header">
 
-    <?php foreach($produtos as $produto): ?>
+    <?php foreach($produto as $produto): ?>
 
     <h1> <?php echo $produto->ID; ?> <small><?php echo $produto->Name; ?> </small></h1>
 
@@ -23,10 +23,23 @@
    </li>
 </ul>
 
-<?php }
+<hr />
 
-else {
+<form>
+
+<div class = "row">
+
+    <a href = "../edit/<?php echo $produto->ID; ?>" class = "btn btn-warning" > Editar </a>
+    <a href = "../remove/<?php echo $produto->ID; ?>" class = "btn btn-danger" > Remover </a>
+    <a href = "../produtos" class = "btn btn-default" > Voltar </a>
+    
+</div>
+
+<?php
+
+else:
     echo "Nenhum Produto Foi Encontrado";
-}
+
+endif;
 
 ?>

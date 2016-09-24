@@ -5,11 +5,13 @@ namespace view;
 
 Class MyView{
 
-    public static function view($param, $param2){
+   protected $vars = array();
+
+    public static function view($param, $param2, $param3 = null, $param4 = null){
 
         $file_include = str_replace(".", "/", $param2);
 
-        $produtos =  func_num_args() > 2  ? func_get_arg(2) : null;
+        func_num_args() >3 ? eval(' $' .$param4. ' = $param3;') : null;
 
         $road = "view/{$param}.php";
 
@@ -21,4 +23,5 @@ Class MyView{
         }
         return false;
     }
+
 }

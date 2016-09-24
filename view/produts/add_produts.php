@@ -31,7 +31,7 @@
 
         <div id="actions" class="row">
           <div class="col-md-12">
-            <button type="submit" class="btn btn-primary">Adicionar</button>
+            <button type="submit" class="btn btn-success">Adicionar</button>
             <a href="produtos" class="btn btn-default">Cancelar</a>
           </div>
         </div>

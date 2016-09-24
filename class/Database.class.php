@@ -129,13 +129,18 @@ class DB{
       $this->stmt = $param;
     }
 
-    public function insert($param, $param2 = null){
+    public function opt($param, $param2 = null){
+
+        $option = ["string" => PDO::PARAM_STR, "integer" => PDO::PARAM_INT];
 
         if(is_array($param)){
 
             $count = 1;
             foreach($param as $key => $value):
-                $this->bind = $this->stmt->bindParam($count, $param[$key]);
+                if($param2 == null)
+                    $param2 = $option[gettype($param[$key])];
+
+                $this->bind = $this->stmt->bindParam($count, $param[$key], $param2);
                 $count++;
             endforeach;
 

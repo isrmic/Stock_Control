@@ -1,7 +1,7 @@
 <?php
 
-
-class Route{
+use Controll\AplicationControll as Controll;
+class Route extends Controll{
 
 
     public static function acess_methods($param, $param2 = null){
