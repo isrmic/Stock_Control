@@ -7,7 +7,7 @@
 
     <h1> <?php echo $produto->ID; ?> <small><?php echo $produto->Name; ?> </small></h1>
 
-    <?php endforeach; ?>
+
 
 </div>
 
@@ -29,17 +29,22 @@
 
 <div class = "row">
 
-    <a href = "../edit/<?php echo $produto->ID; ?>" class = "btn btn-warning" > Editar </a>
-    <a href = "../remove/<?php echo $produto->ID; ?>" class = "btn btn-danger" > Remover </a>
-    <a href = "../produtos" class = "btn btn-default" > Voltar </a>
-    
+    <input type = "button" id = "edit" class = "btn btn-warning" data-lochref = "../edit/<?php echo $produto->ID; ?>" value  = "Editar">
+    <input type = "button" id = "remove" class = "btn btn-danger" data-lochref = "../remove/<?php echo $produto->ID; ?>" value  = "Remove">
+    <input type = "button" id = "back" class = "btn btn-default" data-lochref = "../produtos" value  = "Voltar">
+
 </div>
 
 <?php
+endforeach;
 
 else:
     echo "Nenhum Produto Foi Encontrado";
 
+
+
 endif;
+
+
 
 ?>

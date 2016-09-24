@@ -19,7 +19,7 @@ class AplicationControll extends DB{
         $insert = $save->exec();
 
         if($insert){
-          header("location: produtos?success=true");
+          header("location: produtos?page=1");
         }
         else{
             return "Não Foi Possivel Adicionar O Produto !! ";
@@ -30,6 +30,7 @@ class AplicationControll extends DB{
 
       $remove = $this->prepar("DELETE FROM produtos WHERE ID = ?");
       $remove->opt($id, PDO::PARAM_INT);
+
       if($remove->exec()){
           header("location: /stock_control/produtos");
       }
@@ -68,10 +69,37 @@ class AplicationControll extends DB{
 
     public function Produts(){
 
-        $select = $this->prepar("SELECT * FROM produtos");
-        $select->exec();
+        $opt = Request::Get("prod", "page");
+        $prod_per_page = 5;
+        $page = !empty($opt["page"]) ? $opt["page"] : 1;
+        $limit[0] = $prod_per_page * $page;
+        $limit[1] = $limit[0] - $prod_per_page;
+        $limit = [$limit[1], $limit[0]];
 
-        return viewer::view("template", "produts.list", $select->AllObj(), 'produtos');
+        #var_dump($limit);
+
+        if(!empty($opt["prod"]))
+        {
+            $query = "SELECT * FROM produtos WHERE Name LIKE  ? ";
+        }
+        else
+        {
+            $query = "SELECT * FROM produtos LIMIT ? , ? ";
+        }
+
+        $select = $this->prepar($query);
+
+        $rows = $this->prepare("SELECT * FROM produtos");
+        $rows->Execute();
+        $rows = $rows->rowcount();
+        $value = "%{$opt["prod"]}%";
+        !empty($opt["prod"]) ? $select->opt($value) : $select->opt($limit, PDO::PARAM_INT);
+        $select->exec();
+        $obj = $select->AllObj();
+        if(!empty($obj))
+            $obj[0]->rows = (int)($rows / $prod_per_page + ($rows % $prod_per_page > 0 ? 1 : 0) );
+
+        return viewer::view("template", "produts.list", $obj, 'produtos');
 
     }
 

@@ -11,25 +11,31 @@ foreach($produto as $produto): ?>
 
    <div class="row">
 
-       <div class="form-group col-md-9">
+       <div class="form-group col-md-4">
          <label for="campo1">Nome : </label>
          <input type="text" name = "name_prod" value = "<?php echo $produto->Name; ?>" required = "require" class="form-control" id="campo1">
        </div>
 
-       <div class="form-group col-md-9">
+       <div class="form-group col-md-4">
          <label for="campo2">Preço : </label>
          <input type="number" name = "price_prod" value = "<?php echo $produto->Preco; ?>" required = "require" class="form-control" id="campo3">
        </div>
 
-       <div class="form-group col-md-9">
+       <div class="form-group col-md-2">
+         <label for="campo3">Quantidade : </label>
+         <input type="number" name = "count_prod" value = "<?php echo $produto->Count_p; ?>" required = "require" class="form-control" id="campo3">
+       </div>
+
+     </div>
+
+     <div class = "row">
+
+       <div class="form-group col-md-10">
          <label for="campo3">Descrição : </label>
          <input type="text" name = "desc_prod" value = "<?php echo $produto->Description; ?>" required = "require" class="form-control" id="campo3">
        </div>
 
-       <div class="form-group col-md-9">
-         <label for="campo3">Quantidade : </label>
-         <input type="number" name = "count_prod" value = "<?php echo $produto->Count_p; ?>" required = "require" class="form-control" id="campo3">
-       </div>
+
 
   </div>
 

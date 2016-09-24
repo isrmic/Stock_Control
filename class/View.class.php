@@ -2,8 +2,8 @@
 
 
 namespace view;
-
-Class MyView{
+use Req\GetRequest as Request;
+Class MyView extends Request{
 
    protected $vars = array();
 
@@ -21,6 +21,7 @@ Class MyView{
 
             return true;
         }
+
         return false;
     }
 

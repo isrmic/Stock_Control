@@ -172,7 +172,7 @@ class DB{
     }
 
     public function ResultJson(){
-        return json_encode($this->ALL());
+        return json_encode($this->ALL(), JSON_UNESCAPED_UNICODE);
     }
 
 }

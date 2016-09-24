@@ -11,8 +11,14 @@
     <!-- Bootstrap -->
     <link href="http://localhost/stock_control/css/bootstrap.min.css" rel="stylesheet">
     <link href = "http://localhost/stock_control/css/style.css" rel = "stylesheet">
+    <link href="http://localhost/stock_control/css/flat-ui.css" rel="stylesheet">
+
+
+
 
   <body>
+
+
 
     <?php
         require_once  "/../includes.php";
@@ -22,6 +28,9 @@
     <script src="http://localhost/stock_control/js/jquery.min.js"></script>
     <script src="http://localhost/stock_control/js/bootstrap.min.js"></script>
     <script src = "http://localhost/stock_control/js/new.js"></script>
+    <script src="http://localhost/stock_control/js/flat-ui.min.js"></script>
+    <script src="http://localhost/stock_control/js/application.js"></script>
+
 
   </body>
 </html>

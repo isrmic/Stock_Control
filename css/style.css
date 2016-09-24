@@ -1,7 +1,9 @@
+.container{
+	margin-bottom: 50px;
+}
 nav.navbar.navbar-default{
-	background-color: #3c763d;
 	border-color: #2e6da4;
-	margin-top: 10px;
+	margin-top: 20px;
 }
 
 nav.navbar.navbar-default a {
@@ -11,4 +13,8 @@ nav.navbar.navbar-default a {
 li p.navbar-text, a.navbar-brand {
 	color: white!important;
 	font-weight: bolder;
+}
+
+.centralize{
+		margin:0 auto;
 }
