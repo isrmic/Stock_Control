@@ -16,7 +16,8 @@ class AplicationControll extends ModelP{
         if(!isset($_SESSION["login"])){
 
             return viewer::view("auth.auth", "default");
-        }else {
+        }
+        else {
             header("location: produtos?page=1");
         }
     }
@@ -99,15 +100,6 @@ class AplicationControll extends ModelP{
 
     }
 
-    public function teste(){
-
-        $select = parent::prepar("SELECT * FROM produtos");
-        $select->exec();
-
-        $all = $select->ResultJson();
-        return viewer::view("json", "default", $all, "json");
-
-    }
 
     public function details($id){
 

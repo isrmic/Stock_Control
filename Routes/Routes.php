@@ -74,13 +74,6 @@
     });
 
 
-    Route::Get("teste", function(){
-
-      $controll = new Controll();
-      $controll->teste();
-
-    });
-
     Route::Get("/logout", function($normal){
 
         session_destroy();
