@@ -28,7 +28,7 @@ class Conexion{
         try
         {
             //$this->link = new PDO( ''.$this->BD.':host='.$this->HOST.';dbname='.$this->DB.'', $this->USER, $this->Password );
-            $this->link = new PDO( ''.$this->iniData["Driver"].':host='.$this->iniData["HOST"].':3306;dbname='.$this->iniData["Database"].'', $this->iniData["User"], $this->iniData["Password"] );
+            $this->link = new PDO( ''.$this->iniData["Driver"].':host='.$this->iniData["HOST"].':'.$this->iniData["Port"].';dbname='.$this->iniData["Database"].'', $this->iniData["User"], $this->iniData["Password"] );
         }
         catch ( PDOException $e )
         {
@@ -50,7 +50,7 @@ class Conexion{
           try
           {
               //$this->link = new PDO( ''.$this->BD.':host='.$this->HOST.';dbname='.$this->DB.'', $this->USER, $this->Password );
-              $this->link = new PDO( ''.$this->iniData["Driver"].':host='.$this->iniData["HOST"].':3306;dbname='.$this->iniData["Database"].'', $this->iniData["User"], $this->iniData["Password"] );
+              $this->link = new PDO( ''.$this->iniData["Driver"].':host='.$this->iniData["HOST"].':'.$this->iniData["Port"].';dbname='.$this->iniData["Database"].'', $this->iniData["User"], $this->iniData["Password"] );
           }
           catch ( PDOException $e )
           {

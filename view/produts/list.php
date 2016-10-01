@@ -4,8 +4,9 @@
 
      <?php
 
-     $page = self::Get("page");
-     $page = $page["page"];
+     $page = parent::Get("page");
+     $page = $page["page"] ?? 1;
+
 
      if(!empty($produtos)): ?>
      <table class = "table table-striped table-bordered table-hover">
@@ -64,13 +65,11 @@
       <?php for($i = 1; $i <= $produtos[0]->rows; $i++): ?>
         <li class = "<?php echo $page == $i ? 'active' : null; ?>"><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
       <?php endfor; ?>
-      <li class="next"><a href="?page=<?php echo $page+1; ?>" class="fui-arrow-right"></a></li>
+      <li class="next"><a href="?page=<?php echo $page < $produtos[0]->rows ? $page+1 : $page; ?>" class="fui-arrow-right"></a></li>
     </ul>
   </div>
 
 <?php
     else:
         echo "Nenhum Produto Encontrado ! ";
-
-
     endif;

@@ -2,21 +2,30 @@
 
 
 namespace Controll;
-use conexions\mysql\Con\Conexion as DB;
+#use conexions\mysql\Con\Conexion as DB;
 use view\MyView as viewer;
-use view\MyView;
 use Req\GetRequest as Request;
-use PDO;
+#use PDO;
+use Model\Produts\ModelProduts as ModelP;
 
-class AplicationControll extends DB{
+class AplicationControll extends ModelP{
+
+
+    public function home_page(){
+
+        if(!isset($_SESSION["login"])){
+
+            return viewer::view("auth.auth", "default");
+        }else {
+            header("location: produtos?page=1");
+        }
+    }
 
     public function add_prod(){
 
         $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod"]);
 
-        $save = $this->prepar("INSERT INTO produtos (`Name`, `Preco` ,`Description`, `Count_p`)  values (?,?,?,?) ");
-        $save->opt($Request);
-        $insert = $save->exec();
+        $insert = parent::addnewProd($Request);
 
         if($insert){
           header("location: produtos?page=1");
@@ -28,24 +37,21 @@ class AplicationControll extends DB{
 
     public function remove_prod($id){
 
-      $remove = $this->prepar("DELETE FROM produtos WHERE ID = ?");
-      $remove->opt($id, PDO::PARAM_INT);
+      $remove = parent::removeProd($id);
 
-      if($remove->exec()){
+      if($remove){
           header("location: /stock_control/produtos");
       }
       else {
           echo "Falha Ao Tentar Remover Produto";
       }
+
     }
 
     public function edit_prod($id){
 
-        $select = $this->prepar("SELECT * FROM produtos WHERE ID = ? ");
-        $select->opt($id, PDO::PARAM_INT);
-        $select->exec();
-
-        return viewer::view("template", "produts.edit_prod", $select->AllObj(), "produto");
+        $select = parent::editProd($id);
+        return viewer::view("produts.edit_prod", "template", $select, "produto");
 
     }
 
@@ -53,11 +59,8 @@ class AplicationControll extends DB{
 
       $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod", "prod_ID"]);
 
-      $update = $this->prepar("UPDATE produtos SET Name = ?, Preco = ?, Description = ?, Count_p = ? WHERE ID = ?");
-      $update->opt($Request);
-      $success = $update->exec();
-
-      if($success){
+      $update = parent::updateProd($Request);
+      if($update){
         header("location: produtos");
 
       }
@@ -76,56 +79,40 @@ class AplicationControll extends DB{
         $limit[1] = $limit[0] - $prod_per_page;
         $limit = [$limit[1], $limit[0]];
 
-        #var_dump($limit);
+        $obj = parent::viewProd($opt, $limit, $prod_per_page);
 
-        if(!empty($opt["prod"]))
-        {
-            $query = "SELECT * FROM produtos WHERE Name LIKE  ? ";
-        }
-        else
-        {
-            $query = "SELECT * FROM produtos LIMIT ? , ? ";
-        }
-
-        $select = $this->prepar($query);
-
-        $rows = $this->prepare("SELECT * FROM produtos");
-        $rows->Execute();
-        $rows = $rows->rowcount();
-        $value = "%{$opt["prod"]}%";
-        !empty($opt["prod"]) ? $select->opt($value) : $select->opt($limit, PDO::PARAM_INT);
-        $select->exec();
-        $obj = $select->AllObj();
-        if(!empty($obj))
-            $obj[0]->rows = (int)($rows / $prod_per_page + ($rows % $prod_per_page > 0 ? 1 : 0) );
-
-        return viewer::view("template", "produts.list", $obj, 'produtos');
+        return viewer::view("produts.list", "template", $obj, 'produtos');
 
     }
 
     public function Add(){
-        return viewer::view("template", "produts.add_produts");
+        return viewer::view("produts.add_produts", "template");
     }
 
     public function json(){
 
-        $select = $this->prepar("SELECT * FROM produtos");
+        $select = parent::prepar("SELECT * FROM produtos");
+        $select->exec();
+
+        $json = $select->ResultJson();
+        echo $json;
+
+    }
+
+    public function teste(){
+
+        $select = parent::prepar("SELECT * FROM produtos");
         $select->exec();
 
         $all = $select->ResultJson();
+        return viewer::view("json", "default", $all, "json");
 
-        return $all;
     }
 
     public function details($id){
 
-
-        $prep = $this->prepare("SELECT * FROM produtos where ID = :id ");
-        $prep->bindParam(":id", $id, PDO::PARAM_INT);
-        $prep->Execute();
-        $select = $prep->fetchAll(PDO::FETCH_OBJ);
-
-        return viewer::view("template", "produts.details", $select, "produto");
+        $select = parent::detailsProd($id);
+        return viewer::view("produts.details", "template", $select, "produto");
 
     }
 

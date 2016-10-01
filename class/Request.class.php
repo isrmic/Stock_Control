@@ -15,7 +15,7 @@ class GetRequest{
 
             $Request = array();
 
-            if(count(func_num_args()) >= 1){
+            if(func_num_args() >= 1){
 
                 $params = count(func_num_args()) > 1 ? func_get_args(): is_array(func_get_arg(0)) ? func_get_arg(0) : func_get_args();
                 if(isset($params['not']) && count($params['not']) > 0){
@@ -47,7 +47,7 @@ class GetRequest{
 
 
             $Request = array();
-            if(count(func_num_args())  >= 1){
+            if(func_num_args() >= 1){
 
                 $params = count(func_num_args()) > 1 ? func_get_args(): is_array(func_get_arg(0)) ? func_get_arg(0) : func_get_args();
 
@@ -61,7 +61,7 @@ class GetRequest{
 
                 else {
                     for($i = 0; $i<count($params); $i++){
-                        $Request[$params[$i]] = $_POST[$params[$i]] ??null;
+                        $Request[$params[$i]] = $_POST[$params[$i]] ?? null;
                     }
                 }
 

@@ -1,28 +1,27 @@
 <?php
 
+
+
     use Req\GetRequest as Request;
     use view\MyView as viewer;
     use Controll\AplicationControll as Controll;
 
-
-
-
-
     Route::Get("/", function(){
 
-      $request = Request::Get("name");
+      $controll = new Controll();
+      $controll->home_page();
 
-      echo "<h2> Hello World {$request['name']} <h2>";
 
     });
+
+
+    Route::redirect(true, (!isset($_SESSION["login"])), "/");
 
 
     Route::Get("produtos", function(){
 
         $controll =  new Controll();
         $controll->Produts();
-
-        return true;
 
     });
 
@@ -31,16 +30,12 @@
         $controll =  new Controll();
         $controll->add();
 
-        return true;
-
     });
 
     Route::Post("add_prod", function(){
 
         $controll =  new Controll();
         $controll->add_prod();
-
-        return true;
 
     });
 
@@ -49,15 +44,12 @@
         $controll = new Controll();
         $controll->remove_prod($id);
 
-        return true;
     });
 
     Route::Get("detail/{id}", function($id){
 
         $controll = new Controll();
         $controll->details($id);
-
-        return true;
 
     });
 
@@ -66,8 +58,6 @@
         $controll = new Controll();
         $controll->edit_prod($id);
 
-        return true;
-
     });
 
     Route::Post("updateprod", function(){
@@ -75,12 +65,24 @@
         $controll = new Controll();
         $controll->update_prod();
 
-        return true;
     });
-
 
     Route::Get("json", function(){
 
         $controll =  new Controll();
-        echo $controll->json();
+        $controll->json();
+    });
+
+
+    Route::Get("teste", function(){
+
+      $controll = new Controll();
+      $controll->teste();
+
+    });
+
+    Route::Get("/logout", function($normal){
+
+        session_destroy();
+        header("location: /stock_control");
     });

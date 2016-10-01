@@ -6,10 +6,11 @@ class Route extends Controll{
 
     public static function acess_methods($param, $param2 = null){
 
+
        $url = substr(self::getCurrentUri(), 1);
        $route = explode("/", $url);
-
        $values = explode("/", $param);
+
        preg_match_all("/{(.*?)}/" , $param, $matches);
 
        if(count($matches) >0 && count($values) == count($route)){
@@ -66,6 +67,27 @@ class Route extends Controll{
       }
 
        return true;
+
+    }
+
+    public static function GP($param, $param2){
+
+        $server = $_SERVER["REQUEST_METHOD"];
+
+        if($server == "GET" || $server == "POST"){
+
+            self::acess_methods($param, $param2);
+        }
+
+        return true;
+    }
+
+    public static function redirect($param, $param2, $param3, $param4 = null){
+
+    $url = self::getCurrentUri();
+    if($param && $param2 && $url != $param3){
+        $param4 == null ? header("location: /stock_control") : header("location: {$param4} ");
+    }
 
     }
 

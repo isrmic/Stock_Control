@@ -18,3 +18,9 @@ li p.navbar-text, a.navbar-brand {
 .centralize{
 		margin:0 auto;
 }
+
+.log_in{
+
+		margin:150px auto;
+		width: 400px;
+}

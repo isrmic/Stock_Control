@@ -13,13 +13,13 @@
 
 <ul>
    <li>
-   <b>Valor:</b> R$ <?php echo $produto->Preco; ?>
+      <b>Valor:</b> R$ <?php echo $produto->Preco; ?>
    </li>
    <li>
-   <b>Descrição:</b> <?php echo $produto->Description; ?>
+      <b>Descrição:</b> <?php echo $produto->Description; ?>
    </li>
    <li>
-   <b>Quantidade em estoque:</b> <?php echo $produto->Count_p; ?>
+      <b>Quantidade em estoque:</b> <?php echo $produto->Count_p; ?>
    </li>
 </ul>
 
@@ -29,11 +29,18 @@
 
 <div class = "row">
 
-    <input type = "button" id = "edit" class = "btn btn-warning" data-lochref = "../edit/<?php echo $produto->ID; ?>" value  = "Editar">
-    <input type = "button" id = "remove" class = "btn btn-danger" data-lochref = "../remove/<?php echo $produto->ID; ?>" value  = "Remove">
-    <input type = "button" id = "back" class = "btn btn-default" data-lochref = "../produtos" value  = "Voltar">
+    <input type = "button" id = "edit" class = "btn btn-warning" data-id = "<?php echo $produto->ID; ?>" value  = "Editar">
+    <input type = "button" id = "remove" class = "btn btn-danger" data-id = "<?php echo $produto->ID; ?>" value  = "Remove">
+    <a type = "button" href = "../produtos" class = "btn btn-default"> Voltar </a>
 
 </div>
+
+
+<script>
+$(function(){
+    redirect_buttons();
+});
+</script>
 
 <?php
 endforeach;

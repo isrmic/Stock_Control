@@ -1,3 +1,6 @@
 <?php
-
-require_once __DIR__ . "/view/home_page.php";
+ob_start();
+session_start();
+include_once  "includes.php";
+http_response_code(303);
+?>
