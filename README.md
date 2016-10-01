@@ -1,15 +1,14 @@
 # Stock_Control
 A Simple Stock Control with PHP
 
-#projects open sources used
-Bootstrap -> http://getbootstrap.com.br/
-FlatUI -> http://designmodo.github.io/Flat-UI/
+#Open source projects used
+* [Bootstrap](http://getbootstrap.com.br/)
+* [FlatUI](http://designmodo.github.io/Flat-UI/)
 
-#to Use
+#Instalação
 
-br:
 Execute o arquivo sql "Stock_control.sql".
-Nele está configurado para criar a database e as duas tabelas que são usadas , mais abaixo na ultima linha escrita tem o insert do usuário que se quiser você pode modificar o nome de usuário e a senha a ser usada , desde que a senha esteja em MD5 e com letras maiusculas.
+Nele está configurado para criar a database e as duas tabelas que são usadas, mais abaixo na ultima linha escrita tem o insert do usuário que se quiser você pode modificar o nome de usuário e a senha a ser usada, desde que a senha esteja em MD5 e com letras maiusculas.
 
 configure em seu servidor para ser acessado da seguinte forma :
 
@@ -17,7 +16,8 @@ http://localhost/stock_control/ , é importante ter stock_control seguido do dom
 
 Se manteve o código intacto para fazer login depois de cadastrar é só inserir no campo UserName -> "admincontrol" e Password -> "123456" .
 
-en:
+#Instalation
+
 Run the sql file "Stock_control.sql".
 It is configured to create a database and two tables that are used, below the last line written have the user insert that if you want you can modify the user name and password to be used, as long as the password is MD5 and uppercase letters.
 
