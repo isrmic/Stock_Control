@@ -49,7 +49,7 @@ class GetRequest{
             $Request = array();
             if(func_num_args() >= 1){
 
-                $params = count(func_num_args()) > 1 ? func_get_args(): is_array(func_get_arg(0)) ? func_get_arg(0) : func_get_args();
+                $params = count(func_num_args())  > 1 ? func_get_args(): is_array(func_get_arg(0)) ? func_get_arg(0) : func_get_args();
 
                 if(isset($params['not']) && count($params['not']) > 0){
                     foreach($_POST as $key => $value){
@@ -79,7 +79,7 @@ class GetRequest{
       public static function Donot(){
 
           $Request = array();
-          if(count(func_num_args())  >= 1){
+          if(func_num_args()  >= 1){
               $params = func_get_args();
 
               foreach($_REQUEST as $key => $value){
