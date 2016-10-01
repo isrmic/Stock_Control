@@ -13,7 +13,7 @@ class AuthUser extends DB{
       $formrequest = Request::Post($user, $pass);
       $formrequest["pass"] = strtoupper(md5($formrequest["pass"]));
 
-      $queryselect = "SELECT UserName, PassWord FROM user_admin WHERE UserName = ? AND PassWord = ? ";
+      $queryselect = "SELECT UserName, PassWord FROM user_control WHERE UserName = ? AND PassWord = ? ";
 
       $select = parent::prepar($queryselect);
       $select->opt($formrequest);

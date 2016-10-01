@@ -18,12 +18,12 @@ foreach($produto as $produto): ?>
 
        <div class="form-group col-md-4">
          <label for="campo2">Preço : </label>
-         <input type="number" name = "price_prod" value = "<?php echo $produto->Preco; ?>" required = "require" class="form-control" id="campo3">
+         <input type="number" step = "0.01" name = "price_prod" value = "<?php echo $produto->Price; ?>" required = "require" class="form-control" id="campo3">
        </div>
 
        <div class="form-group col-md-2">
          <label for="campo3">Quantidade : </label>
-         <input type="number" name = "count_prod" value = "<?php echo $produto->Count_p; ?>" required = "require" class="form-control" id="campo3">
+         <input type="number" name = "Count_Prod" value = "<?php echo $produto->Count_P; ?>" required = "require" class="form-control" id="campo3">
        </div>
 
      </div>

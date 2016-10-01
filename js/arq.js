@@ -46,21 +46,26 @@ function check_login(){
               ret = parseInt(ret);
               switch(ret){
                   case 1:
-                      msg = "Logado Com Sucesso !";
-                      location.href = "produtos?page=1";
+                      msg = "<div class = 'alert alert-success'> Logado Com Sucesso ! </div>";
+                      setTimeout(function(){
+                          window.location.href = "produtos?page=1";
+                      }, 1300);
                   break;
 
                   case 2:
-                      msg = "Dados Incorretos";
+                      msg = "<div class = 'alert alert-danger'> Dados Incorretos ! </div>";
                       usern.css("border-color", "red");
                       passn.css("border-color", "red");
 
                   break;
 
                   default:
-                      msg = "Falha Ao Tentar Verificar Login ! " + ret;
+                      msg = "<div class = 'alert alert-warning'> Falha Ao Tentar Verificar Login ! </div>";
+
               }
-              alert(msg);
+              $("#result").html(msg);
+              $("#result").show();
+
           });
         }
 

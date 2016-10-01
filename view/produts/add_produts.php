@@ -13,7 +13,7 @@
 
               <div class="form-group col-md-3">
                 <label for="campo2">Preço : </label>
-                <input type="number" name = "price_prod" required = "require" class="form-control" id="campo3">
+                <input type="number" step="0.01" name = "price_prod" required = "require" class="form-control" id="campo3">
               </div>
 
 

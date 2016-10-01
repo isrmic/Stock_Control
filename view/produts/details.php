@@ -13,13 +13,13 @@
 
 <ul>
    <li>
-      <b>Valor:</b> R$ <?php echo $produto->Preco; ?>
+      <b>Valor:</b> R$ <?php echo $produto->Price; ?>
    </li>
    <li>
       <b>Descrição:</b> <?php echo $produto->Description; ?>
    </li>
    <li>
-      <b>Quantidade em estoque:</b> <?php echo $produto->Count_p; ?>
+      <b>Quantidade em estoque:</b> <?php echo $produto->Count_P; ?>
    </li>
 </ul>
 

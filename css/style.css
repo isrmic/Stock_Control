@@ -1,3 +1,4 @@
+
 .container{
 	margin-bottom: 50px;
 }
@@ -23,4 +24,14 @@ li p.navbar-text, a.navbar-brand {
 
 		margin:150px auto;
 		width: 400px;
+}
+
+
+.screen{
+
+		width: 100%;
+		height: 100%;
+		background-color: #1abc9c;
+		
+
 }

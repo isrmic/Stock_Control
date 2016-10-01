@@ -9,7 +9,8 @@ class ModelProduts extends DB{
 
     public function addnewProd($values){
 
-        $add = parent::prepar("INSERT INTO produtos (`Name`, `Preco` ,`Description`, `Count_p`)  values (?,?,?,?) ");
+        $add = parent::prepar("INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`)  values (?,?,?,?, NOW(), NOW()) ");
+
         $add->opt($values);
         return $add->exec();
     }
@@ -59,7 +60,7 @@ class ModelProduts extends DB{
 
     public function updateProd($values){
 
-        $update = parent::prepar("UPDATE produtos SET Name = ?, Preco = ?, Description = ?, Count_p = ? WHERE ID = ?");
+        $update = parent::prepar("UPDATE produtos SET Name = ?, Price = ?, Description = ?, Count_p = ?, dataModified = NOW() WHERE ID = ?");
         $update->opt($values);
         return $update->exec();
 

@@ -30,9 +30,9 @@
 
 
       <td> <?php echo $produto->Name; ?> </td>
-      <td style = "width:110px;"> R$ <?php echo number_format($produto->Preco, 2, ',', ' '); ?> </td>
+      <td style = "width:110px;"> R$ <?php echo number_format($produto->Price, 2, ',', ' '); ?> </td>
       <td> <?php echo $produto->Description; ?>  </td>
-      <td> <?php echo $produto->Count_p; ?> </td>
+      <td> <?php echo $produto->Count_P; ?> </td>
 
       <td>
           <a class = "btn btn-inverse btn-xs" href="detail/<?php echo $produto->ID; ?>">
