@@ -60,7 +60,7 @@ class ModelProduts extends DB{
 
     public function updateProd($values){
 
-        $update = parent::prepar("UPDATE produtos SET Name = ?, Price = ?, Description = ?, Count_p = ?, dataModified = NOW() WHERE ID = ?");
+        $update = parent::prepar("UPDATE produtos SET Name = ?, Price = ?, Description = ?, Count_P = ?, dataModified = NOW() WHERE ID = ?");
         $update->opt($values);
         return $update->exec();
 

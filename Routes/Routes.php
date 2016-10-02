@@ -15,7 +15,7 @@
     });
 
 
-    Route::redirect(true, (!isset($_SESSION["login"])), "/");
+    Route::redirect(false, (!isset($_SESSION["login"])), "/");
 
 
     Route::Get("produtos", function(){
