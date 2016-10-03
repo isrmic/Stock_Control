@@ -25,7 +25,6 @@
 
 <hr />
 
-<form>
 
 <div class = "row">
 

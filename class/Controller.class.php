@@ -57,12 +57,13 @@ class AplicationControll extends ModelP{
     }
 
     public function update_prod(){
-
+	  
+	  
       $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "prod_ID"]);
-
+	  
       $update = parent::updateProd($Request);
       if($update){
-        header("location: produtos");
+        header("location: produtos?page=1");
 
       }
       else{
@@ -90,9 +91,11 @@ class AplicationControll extends ModelP{
         return viewer::view("produts.add_produts", "template");
     }
 
-    public function json(){
-
-        $select = parent::prepar("SELECT * FROM produtos");
+    public function json($id = null){
+		
+		$query = $id == null ? "SELECT * FROM produtos" : "SELECT * FROM produtos WHERE ID = ?";
+		$select = parent::prepar($query);
+		$id != null ? $select->opt($id) : null;
         $select->exec();
 
         $json = $select->ResultJson();

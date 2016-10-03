@@ -64,6 +64,7 @@
 
         $controll = new Controll();
         $controll->update_prod();
+		
 
     });
 
@@ -72,6 +73,13 @@
         $controll =  new Controll();
         $controll->json();
     });
+	
+	Route::Get("json/{id}", function($id){
+		
+		$controll = new Controll($id);
+		$controll->json($id);
+		
+	});
 
 
     Route::Get("/logout", function($normal){
