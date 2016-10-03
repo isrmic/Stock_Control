@@ -57,10 +57,10 @@ class AplicationControll extends ModelP{
     }
 
     public function update_prod(){
-	  
-	  
+
+
       $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "prod_ID"]);
-	  
+
       $update = parent::updateProd($Request);
       if($update){
         header("location: produtos?page=1");
