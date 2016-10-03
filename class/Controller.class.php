@@ -25,14 +25,21 @@ class AplicationControll extends ModelP{
     public function add_prod(){
 
         $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod"]);
+        $key = Request::Post("key");
+        if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
+            $insert = parent::addnewProd($Request);
 
-        $insert = parent::addnewProd($Request);
+            if($insert){
+              header("location: produtos?page=1");
+            }
 
-        if($insert){
-          header("location: produtos?page=1");
-        }
-        else{
-            return "Não Foi Possivel Adicionar O Produto !! ";
+            else{
+                return "Não Foi Possivel Adicionar O Produto !! ";
+            }
+
+        }else{
+            header("location: /stock_control/");
+
         }
     }
 
@@ -57,18 +64,27 @@ class AplicationControll extends ModelP{
     }
 
     public function update_prod(){
-	  
-	  
+
+
       $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "prod_ID"]);
-	  
+      $key = Request::Post("key");
+      if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
+
       $update = parent::updateProd($Request);
+
       if($update){
         header("location: produtos?page=1");
 
       }
+
       else{
           return "Não Foi Possivel Modificar O Produto !! ";
       }
+    }
+
+    else{
+      header("location: /stock_control/");
+    }
 
     }
 
@@ -91,8 +107,8 @@ class AplicationControll extends ModelP{
         return viewer::view("produts.add_produts", "template");
     }
 
-    public function json($id = null){
-		
+    public function json($id = null, $key = null){
+
 		$query = $id == null ? "SELECT * FROM produtos" : "SELECT * FROM produtos WHERE ID = ?";
 		$select = parent::prepar($query);
 		$id != null ? $select->opt($id) : null;
@@ -108,6 +124,11 @@ class AplicationControll extends ModelP{
 
         $select = parent::detailsProd($id);
         return viewer::view("produts.details", "template", $select, "produto");
+
+    }
+
+	public function NotFound_404(){
+        return viewer::view("error.404");
 
     }
 

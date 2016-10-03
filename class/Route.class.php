@@ -3,6 +3,7 @@
 use Controll\AplicationControll as Controll;
 class Route extends Controll{
 
+	protected static $add_url = array();
 
     public static function acess_methods($param, $param2 = null){
 
@@ -34,11 +35,13 @@ class Route extends Controll{
 
        }
 
+			 self::$add_url[] = $param;
        if($url == $param){
           isset($varsparam) ? call_user_func_array($param2, $varsparam) : $param2("");
        }else if("/" . $url == $param){
             isset($varsparam) ? call_user_func_array($param2, $varsparam) : $param2("");
        }
+
 
 
        return true;
@@ -52,6 +55,7 @@ class Route extends Controll{
        if($_SERVER["REQUEST_METHOD"] == "GET"){
 
           self::acess_methods($param, $param2);
+
        }
 
 
@@ -84,12 +88,30 @@ class Route extends Controll{
 
     public static function redirect($param, $param2, $param3, $param4 = null){
 
-    $url = self::getCurrentUri();
-    if($param && $param2 && $url != $param3){
-        $param4 == null ? header("location: /stock_control") : header("location: {$param4} ");
-    }
+		    $url = self::getCurrentUri();
+		    if($param && $param2 && $url != $param3 && !stripos($url, "json")){
+		        $param4 == null ? header("location: /stock_control") : header("location: {$param4} ");
+
+		    }
 
     }
+
+	public static function verify_uri($condiction){
+
+		if($condiction === true){
+
+				$uri = substr(self::getCurrentUri(), 1);
+				$url = self::$add_url;
+
+
+				if(!in_array($uri, $url) && !in_array("/" . $uri, $url)){
+					http_response_code(404);
+					header("location: /stock_control/404");
+				}
+
+		}
+
+	}
 
 
     static function getCurrentUri()

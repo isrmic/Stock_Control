@@ -14,8 +14,8 @@
 
     });
 
-
-    Route::redirect(false, (!isset($_SESSION["login"])), "/");
+    //IF Session Login Not Isset , Redirect To Page Login;
+    Route::redirect(true, (!isset($_SESSION["login"])), "/");
 
 
     Route::Get("produtos", function(){
@@ -64,21 +64,29 @@
 
         $controll = new Controll();
         $controll->update_prod();
-		
+
 
     });
 
     Route::Get("json", function(){
 
-        $controll =  new Controll();
+        $controll = new Controll();
         $controll->json();
     });
-	
+
+
 	Route::Get("json/{id}", function($id){
-		
+
 		$controll = new Controll($id);
 		$controll->json($id);
-		
+
+	});
+
+	Route::Get("404", function($id){
+
+		$controll = new Controll($id);
+		$controll->NotFound_404();
+
 	});
 
 
@@ -87,3 +95,5 @@
         session_destroy();
         header("location: /stock_control");
     });
+
+    Route::verify_uri(true);

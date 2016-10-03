@@ -3,6 +3,8 @@
 
        <form action="add_prod" method = "post">
 
+        <input type = "hidden" name = "key" value = "55FAF772A5E8ED8E5CC729CD37606403">
+
           <div class="row">
 
               <div class="form-group col-md-3">

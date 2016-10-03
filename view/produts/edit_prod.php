@@ -8,6 +8,7 @@ foreach($produto as $produto): ?>
 <form action="../updateprod" method = "post">
 
   <input type = "hidden" name = "prod_ID" value = "<?php echo $produto->ID; ?>">
+  <input type = "hidden" name = "key" value = "55FAF772A5E8ED8E5CC729CD37606403">
 
    <div class="row">
 
