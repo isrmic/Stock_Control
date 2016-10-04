@@ -80,6 +80,7 @@
 		$controll = new Controll($id);
 		$controll->json($id);
 
+
 	});
 
 	Route::Get("404", function($id){

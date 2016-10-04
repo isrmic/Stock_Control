@@ -67,6 +67,7 @@ class AplicationControll extends ModelP{
 
 
       $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "prod_ID"]);
+
       $key = Request::Post("key");
       if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
 
