@@ -36,7 +36,7 @@
 
                       <li><a href="/stock_control/produtos">Lista Produtos</a></li>
                       <li><a href="/stock_control/adicionar">Novo</a></li>
-                      <li><a href="/stock_control/json">Json</a></li>
+                      <li><a href="/stock_control/produtos/json">Json</a></li>
                       <?php if(isset($_SESSION["login"])): ?><li><a href="/stock_control/logout">Logout</a></li><?php endif; ?>
 
                      </ul>

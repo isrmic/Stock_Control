@@ -68,14 +68,14 @@
 
     });
 
-    Route::Get("json", function(){
+    Route::Get("produtos/json", function(){
 
         $controll = new Controll();
         $controll->json();
     });
 
 
-	Route::Get("json/{id}", function($id){
+	Route::Get("produtos/json/{id}", function($id){
 
 		$controll = new Controll($id);
 		$controll->json($id);
