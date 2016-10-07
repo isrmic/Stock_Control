@@ -9,9 +9,10 @@ class ModelProduts extends DB{
 
     public function addnewProd($values){
 
-        $add = parent::prepar("INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`)  values (?,?,?,?, NOW(), NOW()) ");
+        $query = $this->ReturnQueryString("Insert", $values);
+        $add = parent::prepar($query);
 
-        $add->opt($values);
+        $this->TypeBD == "mysql" ? $add->opt($values) : null;
         return $add->exec();
     }
 
@@ -19,25 +20,40 @@ class ModelProduts extends DB{
 
         if(!empty($opt["prod"]))
         {
-            $query = "SELECT * FROM produtos WHERE Name LIKE  ? ";
+            $value = "%{$opt["prod"]}%";
+            $query = $this->ReturnQueryString("Select", "WhereName", $value);
         }
         else
         {
-            $query = "SELECT * FROM produtos LIMIT ? , ? ";
+            $query = $this->ReturnQueryString("Select", "pagination", $limit);
+
         }
 
         $select = parent::prepar($query);
 
-        $rows = parent::prepare("SELECT * FROM produtos");
+        //query to select all data in table produtos
+        $rowquery = "SELECT COUNT(*) FROM produtos";
+        $rows = parent::prepare($rowquery);
         $rows->Execute();
-        $rows = $rows->rowcount();
-        $value = "%{$opt["prod"]}%";
-        !empty($opt["prod"]) ? $select->opt($value) : $select->opt($limit, PDO::PARAM_INT);
+
+        //select rows to pagination
+        $rows = $rows->fetchColumn();
+        
+
+        if($this->TypeBD == "mysql"){
+            !empty($opt["prod"])? $select->opt($value) : $select->opt($limit, PDO::PARAM_INT);
+        }
+        //Execution of query
         $select->exec();
+
+        //Return All results of execution query in form object
         $obj = $select->AllObj();
+
+        //add rows pagination in results query
         if(!empty($obj))
             $obj[0]->rows = (int)($rows / $ppp + ($rows % $ppp > 0 ? 1 : 0) );
 
+        //return obj with rows with data querys
         return $obj;
 
     }
@@ -60,8 +76,9 @@ class ModelProduts extends DB{
 
     public function updateProd($values){
 
-        $update = parent::prepar("UPDATE produtos SET Name = ?, Price = ?, Description = ?, Count_P = ?, dataModified = NOW() WHERE ID = ?");
-        $update->opt($values);
+        $queryupdate = $this->ReturnQueryString("Update", $values);
+        $update = parent::prepar($queryupdate);
+        $this->TypeBD == "mysql" ? $update->opt($values) : $update->opt($values["prod_ID"]);
         return $update->exec();
 
     }
@@ -73,6 +90,79 @@ class ModelProduts extends DB{
       $prep->Execute();
       return $prep->fetchAll(PDO::FETCH_OBJ);
 
+    }
+
+    private function ReturnQueryString($param, $param2 = null, $param3 = null){
+
+        $query = null;
+        $TypeBD = $this->TypeBD;
+
+
+        switch($TypeBD){
+
+            case "mysql":
+
+                switch($param){
+
+                  case "Select":
+                      $query = "SELECT * FROM produtos LIMIT ? , ? ";
+                  break;
+
+                  case "Insert":
+                      $query = "INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`)  values (?,?,?,?, NOW(), NOW()) ";
+                  break;
+
+                  case "Rows":
+                      $query = "SELECT COUNT(*) FROM produtos";
+                  break;
+
+                  case "Update":
+                      $query = "UPDATE produtos SET Name = ?, Price = ?, Description = ?, Count_P = ?, dataModified = NOW() WHERE ID = ?";
+                  break;
+
+                }
+
+            break;
+
+
+            case "odbc":
+
+                switch($param){
+
+                    case "Select":
+
+                      if($param2 == "pagination"){
+
+                          $query = "SELECT * FROM produtos ORDER BY ID OFFSET {$param3[0]} ROWS FETCH NEXT {$param3[1]} ROWS ONLY";
+                      }
+                      else if($param2 == "WhereName"){
+
+                          $query = "SELECT * FROM produtos WHERE NAME LIKE '%{$param3}%' ";
+                      }
+
+                    break;
+
+                    case "Insert":
+                        $query = "INSERT INTO produtos (Name, Price ,Description, Count_P, insertData, dataModified)  values ('{$param2["name_prod"]}', {$param2["price_prod"]},'{$param2["desc_prod"]}', {$param2["count_prod"]}, getdate(), getdate())";
+                    break;
+
+                    case "Rows":
+                        $query = "SELECT COUNT(*) FROM produtos";
+                    break;
+
+                    case "Update":
+                        $query = "UPDATE produtos SET Name = '{$param2['name_prod']}', Price = {$param2['price_prod']}, Description = '{$param2['desc_prod']}', Count_P = {$param2['Count_Prod']}, dataModified = getdate() WHERE ID = ?";
+                    break;
+
+                  }
+
+
+
+            break;
+
+        }
+
+        return $query;
     }
 
 }

@@ -13,6 +13,7 @@ class Conexion{
     private $USER;
     private $Pass;
     private $BD;
+    public $TypeBD;
     private $link = null;
     private $iniData;
 
@@ -24,11 +25,24 @@ class Conexion{
         $this->USER = $User;
         $this->Password = $Password;
         $this->BD = $BD;
-        $this->iniData = parse_ini_file(__DIR__ . "\..\Database\Database.ini");
+        $this->iniData = parse_ini_file(__DIR__ . "\..\Database\Database.ini", true);
+        $this->TypeBD = $this->iniData["type"]["Driver"];
         try
         {
             //$this->link = new PDO( ''.$this->BD.':host='.$this->HOST.';dbname='.$this->DB.'', $this->USER, $this->Password );
-            $this->link = new PDO( ''.$this->iniData["Driver"].':host='.$this->iniData["HOST"].':'.$this->iniData["Port"].';dbname='.$this->iniData["Database"].'', $this->iniData["User"], $this->iniData["Password"] );
+
+
+            switch($this->TypeBD){
+
+                case "mysql":
+                    $this->link = new PDO( ''.$this->iniData["mysql"]["Driver"].':host='.$this->iniData["mysql"]["HOST"].':'.$this->iniData["mysql"]["Port"].';dbname='.$this->iniData["mysql"]["DataBase"].'', $this->iniData["mysql"]["User"], $this->iniData["mysql"]["Password"] );
+                break;
+
+                case "odbc":
+                    $this->link =  new PDO("odbc:DRIVER={SQL Server};Server=".$this->iniData["odbc"]["HOST"].";DATABASE=".$this->iniData["odbc"]["DataBase"]."; Uid=".$this->iniData["odbc"]["User"]."; Pwd=".$this->iniData["odbc"]["Password"].";");
+                break;
+            }
+
         }
         catch ( PDOException $e )
         {
@@ -145,6 +159,7 @@ class DB{
             endforeach;
 
         }else {
+            $param2 = $option[gettype($param)];
             $this->bind = $this->stmt->bindParam(1, $param, $param2);
         }
 

@@ -16,11 +16,11 @@
     <tr class = "">
 
       <tr>
+        
         <td> Nome </td>
         <td> Preço </td>
         <td> Descrição </td>
         <td> Quantidade </td>
-
 
       </tr>
 
