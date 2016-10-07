@@ -9,7 +9,7 @@ class ModelProduts extends DB{
 
     public function addnewProd($values){
 
-        $query = $this->ReturnQueryString("Insert", $values);
+        $query = $this->ReturnQueryString("Insert", "produto", $values);
         $add = parent::prepar($query);
 
         $this->TypeBD == "mysql" ? $add->opt($values) : null;
@@ -38,7 +38,7 @@ class ModelProduts extends DB{
 
         //select rows to pagination
         $rows = $rows->fetchColumn();
-        
+
 
         if($this->TypeBD == "mysql"){
             !empty($opt["prod"])? $select->opt($value) : $select->opt($limit, PDO::PARAM_INT);
@@ -92,6 +92,25 @@ class ModelProduts extends DB{
 
     }
 
+    public function providers(){
+
+        $query = "SELECT ID, Company FROM providers";
+        $select = parent::prepar($query);
+        $select->exec();
+        $result = $select->AllObj();
+
+        return $result;
+    }
+
+    public function addnewProv($values){
+
+        $query = $this->ReturnQueryString("Insert", "fornecedor", $values);
+        $addnewprov = parent::prepar($query);
+        $this->TypeBD == "mysql" ? $addnewprov->opt($values) : null;
+
+        return $addnewprov->exec();
+    }
+
     private function ReturnQueryString($param, $param2 = null, $param3 = null){
 
         $query = null;
@@ -109,7 +128,15 @@ class ModelProduts extends DB{
                   break;
 
                   case "Insert":
-                      $query = "INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`)  values (?,?,?,?, NOW(), NOW()) ";
+
+                      if($param2 == "produto"){
+                          $query = "INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`)  values (?,?,?,?, NOW(), NOW()) ";
+                      }
+
+                      else if($param2 == "fornecedor"){
+                          $query = "INSERT INTO Providers (Name, Company ,Office, Location, City, Region, CEP, Country, Phone)  values (?,?,?,?,?,?,?,?,?)";
+                      }
+
                   break;
 
                   case "Rows":
@@ -143,7 +170,15 @@ class ModelProduts extends DB{
                     break;
 
                     case "Insert":
-                        $query = "INSERT INTO produtos (Name, Price ,Description, Count_P, insertData, dataModified)  values ('{$param2["name_prod"]}', {$param2["price_prod"]},'{$param2["desc_prod"]}', {$param2["count_prod"]}, getdate(), getdate())";
+
+                        if($param2 == "produto"){
+
+                            $query = "INSERT INTO produtos (Name, Price ,Description, Count_P, insertData, dataModified, ProviderID)  values ('{$param3["name_prod"]}', {$param3["price_prod"]},'{$param3["desc_prod"]}', {$param3["count_prod"]}, getdate(), getdate(), {$param3["provider"]})";
+                        }
+                        else if($param2 == "fornecedor"){
+                            $query = "INSERT INTO Providers (Name, Company ,Office, Location, City, Region, CEP, Country, Phone)  values ('{$param3["name_prov"]}', '{$param3["company_prov"]}','{$param3["office_prov"]}', '{$param3["location_prov"]}', '{$param3["city_prov"]}', '{$param3["region_prov"]}', '{$param3["cep_prov"]}', '{$param3["country_prov"]}', '{$param3["phone_prov"]}')";
+                        }
+
                     break;
 
                     case "Rows":

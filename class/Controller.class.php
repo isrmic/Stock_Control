@@ -24,7 +24,8 @@ class AplicationControll extends ModelP{
 
     public function add_prod(){
 
-        $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod"]);
+        $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod", "provider"]);
+        var_dump($Request);
         $key = Request::Post("key");
         if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
             $insert = parent::addnewProd($Request);
@@ -105,7 +106,31 @@ class AplicationControll extends ModelP{
     }
 
     public function Add(){
-        return viewer::view("produts.add_produts", "template");
+
+        $providers = parent::providers();
+        return viewer::view("produts.add_produts", "template", $providers, "providers");
+    }
+
+    public function Add_prov(){
+
+      $Request = Request::Post(["name_prov", "company_prov", "office_prov", "location_prov", "city_prov", "region_prov", "cep_prov", "country_prov", "phone_prov"]);
+      $key = Request::Post("key");
+      if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
+          $insert = parent::addnewProv($Request);
+
+          if($insert){
+            header("location: produtos?page=1");
+          }
+
+          else{
+              return "Não Foi Possivel Adicionar O Fornecedor !! ";
+          }
+
+      }else{
+          header("location: /stock_control/");
+
+      }
+
     }
 
     public function json($id = null, $key = null){
@@ -127,6 +152,7 @@ class AplicationControll extends ModelP{
         return viewer::view("produts.details", "template", $select, "produto");
 
     }
+
 
 	public function NotFound_404(){
         return viewer::view("error.404");

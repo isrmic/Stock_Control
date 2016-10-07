@@ -9,7 +9,7 @@
 
               <div class="form-group col-md-3">
                 <label for="campo1">Nome : </label>
-                <input type="text" name = "name_prod" required = "require" class="form-control" id="campo1">
+                <input type="text" name = "name_prod" maxlength="16" required = "require" class="form-control" id="campo1">
               </div>
 
 
@@ -24,6 +24,17 @@
               <input type="number" name = "count_prod" required = "require" class="form-control" id="campo3">
             </div>
 
+            <div class="form-group col-md-2">
+              <label for="campo3">Fornecedor : </label>
+              <select name = "provider" class="form-control">
+                  <option value="NULL"> SELECT </option>
+                  <?php foreach($providers as $provider):?>
+                    <option value = "<?php echo $provider->ID; ?>"> <?php echo $provider->Company; ?> </option>
+                  <?php endforeach;?>
+              </select>
+            </div>
+
+
             </div>
 
             <div class="row">
@@ -35,10 +46,6 @@
 
 
               </div>
-
-
-
-
 
         <hr />
 

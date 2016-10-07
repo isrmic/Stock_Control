@@ -12,12 +12,12 @@ foreach($produto as $produto): ?>
 
    <div class="row">
 
-       <div class="form-group col-md-4">
+       <div class="form-group col-md-3">
          <label for="campo1">Nome : </label>
          <input type="text" name = "name_prod" value = "<?php echo $produto->Name; ?>" required = "require" class="form-control" id="campo1">
        </div>
 
-       <div class="form-group col-md-4">
+       <div class="form-group col-md-3">
          <label for="campo2">Preço : </label>
          <input type="number" step = "0.01" name = "price_prod" value = "<?php echo $produto->Price; ?>" required = "require" class="form-control" id="campo3">
        </div>
@@ -27,14 +27,25 @@ foreach($produto as $produto): ?>
          <input type="number" name = "Count_Prod" value = "<?php echo $produto->Count_P; ?>" required = "require" class="form-control" id="campo3">
        </div>
 
+       <div class="form-group col-md-2">
+         <label for="campo3">Fornecedor : </label>
+         <select name = "provider" class="form-control">
+             <option value="NULL"> SELECT </option>
+         </select>
+       </div>
+
      </div>
+
+
 
      <div class = "row">
 
        <div class="form-group col-md-10">
-         <label for="campo3">Descrição : </label>
-         <input type="text" name = "desc_prod" value = "<?php echo $produto->Description; ?>" required = "require" class="form-control" id="campo3">
+         <label for="campo4">Descrição : </label>
+         <input type="text" name = "desc_prod" value = "<?php echo $produto->Description; ?>" required = "require" class="form-control" id="campo4">
        </div>
+
+
 
 
 

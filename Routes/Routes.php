@@ -83,6 +83,18 @@
 
 	});
 
+  Route::Get("addproviders", function(){
+
+      return viewer::view("produts.add_provider", "template");
+  });
+
+  Route::Post("add_prov", function(){
+
+      $controll = new Controll();
+      $controll->Add_prov();
+      
+  });
+
 	Route::Get("404", function($id){
 
 		$controll = new Controll($id);

@@ -15,6 +15,7 @@
     <script src="/stock_control/js/jquery.min.js"></script>
 
 
+
   <body>
 
     <div class = "container">
@@ -35,10 +36,18 @@
                     <ul class="nav navbar-nav navbar-right">
 
                       <li><a href="/stock_control/produtos">Lista Produtos</a></li>
-                      <li><a href="/stock_control/adicionar">Novo</a></li>
                       <li><a href="/stock_control/produtos/json">Json</a></li>
-                      <?php if(isset($_SESSION["login"])): ?><li><a href="/stock_control/logout">Logout</a></li><?php endif; ?>
 
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
+                        <span class="dropdown-arrow"></span>
+                        <ul class="dropdown-menu">
+                          <li><a href="/stock_control/adicionar">Novo</a></li>
+                          <li><a href="/stock_control/addproviders">Fornecedores</a></li>
+                          <li class="divider"></li>
+                          <?php if(isset($_SESSION["login"])): ?><li><a href="/stock_control/logout">Logout</a></li><?php endif; ?>
+                        </ul>
+                      </li>
                      </ul>
 
                      <form class="navbar-form navbar-right" action="" role="search">
@@ -51,10 +60,10 @@
                         </div>
                       </div>
                     </form>
-                  </div><!-- /.navbar-collapse -->
-                </nav><!-- /navbar -->
+                  </div>
+                </nav>
               </div>
-            </div> <!-- /row -->
+            </div>
 
          </nav>
 
@@ -66,7 +75,6 @@
       </div>
 
 
-    <script src="/stock_control/js/bootstrap.min.js"></script>
     <script src = "/stock_control/js/arq.js"></script>
     <script src="/stock_control/js/flat-ui.min.js"></script>
     <script src="/stock_control/js/application.js"></script>
