@@ -92,7 +92,13 @@
 
       $controll = new Controll();
       $controll->Add_prov();
-      
+
+  });
+
+  Route::Get("fornecedores/json", function(){
+
+        $controll = new Controll();
+        $controll->prov_json();
   });
 
 	Route::Get("404", function($id){

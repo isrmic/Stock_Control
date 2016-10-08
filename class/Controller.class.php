@@ -24,7 +24,7 @@ class AplicationControll extends ModelP{
 
     public function add_prod(){
 
-        $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod", "provider"]);
+        $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod", "provider", "code_prod"]);
         var_dump($Request);
         $key = Request::Post("key");
         if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
@@ -67,7 +67,7 @@ class AplicationControll extends ModelP{
     public function update_prod(){
 
 
-      $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "prod_ID"]);
+      $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "prod_ID", "provider", "code_prod"]);
 
       $key = Request::Post("key");
       if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
@@ -113,7 +113,7 @@ class AplicationControll extends ModelP{
 
     public function Add_prov(){
 
-      $Request = Request::Post(["name_prov", "company_prov", "office_prov", "location_prov", "city_prov", "region_prov", "cep_prov", "country_prov", "phone_prov"]);
+      $Request = Request::Post(["name_prov", "company_prov", "office_prov", "location_prov", "city_prov", "region_prov", "cep_prov", "country_prov", "phone_prov", "email_prov"]);
       $key = Request::Post("key");
       if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
           $insert = parent::addnewProv($Request);
@@ -135,14 +135,26 @@ class AplicationControll extends ModelP{
 
     public function json($id = null, $key = null){
 
-		$query = $id == null ? "SELECT * FROM produtos" : "SELECT * FROM produtos WHERE ID = ?";
-		$select = parent::prepar($query);
-		$id != null ? $select->opt($id) : null;
+    		$query = $id == null ? "SELECT * FROM produtos" : "SELECT * FROM produtos WHERE ID = ?";
+    		$select = parent::prepar($query);
+    		$id != null ? $select->opt($id) : null;
         $select->exec();
 
         $json = $select->ResultJson();
         echo $json;
 
+    }
+
+    public function prov_json($id = null){
+
+        $query = $id == null ? "SELECT * FROM Providers" : "SELECT * FROM Providers WHERE ID = ?";
+        $select = parent::prepar($query);
+        $id != NULL ? $select->opt($query) : NULL;
+        $select->exec();
+
+        $json = $select->ResultJson();
+
+        echo $json;
     }
 
 

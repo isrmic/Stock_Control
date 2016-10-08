@@ -1,8 +1,8 @@
 
   function redirect_buttons(){
 
-      var elements = $("#edit, #remove");
-      var redirects = ["../edit", "../remove"];
+      var elements = $("#edit, #remove, #infojson");
+      var redirects = ["../edit", "../remove", "../produtos/json"];
 
       $(elements).each(function(index, elm){
         $elm = $(elm);
@@ -70,4 +70,59 @@ function check_login(){
         }
 
     });
+}
+
+function register_provs(){
+
+    $("#CEP").change(function(){
+
+            $.ajax({
+
+              url:"https://viacep.com.br/ws/"+this.value+"/json/",
+
+            }).done(function(json){
+
+                if(!json.erro){
+                    $("#address").val(json.logradouro + " - " + json.bairro);
+                    $("#city").val(json.localidade + " - " + json.uf);
+                }
+
+            });
+
+    });
+
+    $("#btnaddprov").on("click", function(){
+
+        var verify = verify_fields();
+
+        if(verify === true){
+
+            var valid_email = isEmail($("#email").val());
+
+            if(valid_email)
+                $("#formprov").submit();
+            else
+                $("#email").css("border-color", "red").focus();
+        }
+        else
+            alert("Preencha Todos Os Campos");
+
+    });
+
+    function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(email);
+    }
+
+    function verify_fields(){
+
+        var result;
+        $(".form-field").each(function(index, elm){
+
+            result = result !== false ? $(elm).val() != "" : false;
+        });
+
+        return result;
+    }
+
 }

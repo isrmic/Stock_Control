@@ -17,9 +17,9 @@ foreach($produto as $produto): ?>
          <input type="text" name = "name_prod" value = "<?php echo $produto->Name; ?>" required = "require" class="form-control" id="campo1">
        </div>
 
-       <div class="form-group col-md-3">
+       <div class="form-group col-md-2">
          <label for="campo2">Preço : </label>
-         <input type="number" step = "0.01" name = "price_prod" value = "<?php echo $produto->Price; ?>" required = "require" class="form-control" id="campo3">
+         <input type="number" step = "0.01" name = "price_prod" value = "<?php echo $produto->Price; ?>" required = "require" class="form-control" id="campo2">
        </div>
 
        <div class="form-group col-md-2">
@@ -27,10 +27,21 @@ foreach($produto as $produto): ?>
          <input type="number" name = "Count_Prod" value = "<?php echo $produto->Count_P; ?>" required = "require" class="form-control" id="campo3">
        </div>
 
+       <div class="form-group col-md-3">
+         <label for="campo4">Código Produto : </label>
+         <div class="input-group">
+         <span class="input-group-addon" id="codebar"><i class="glyphicon glyphicon-barcode"></i></span>
+         <input type="text" name = "code_prod" aria-describedby="codebar" value = "<?php echo $produto->Code_Produt; ?>" required = "require" class="form-control" id="campo4">
+       </div>
+       </div>
+
        <div class="form-group col-md-2">
-         <label for="campo3">Fornecedor : </label>
-         <select name = "provider" class="form-control">
-             <option value="NULL"> SELECT </option>
+         <label for="campo5">Fornecedor : </label>
+         <select id = "campo5" name = "provider" class="form-control">
+             <option value="<?php echo $produto->ProviderID; ?>"> SELECT </option>
+             <?php foreach($produto->prov as $prov):?>
+                <option value="<?php echo $prov["ID"]; ?>"> <?php echo $prov["Name"] . " -- " . $prov["Company"]; ?> </option>
+             <?php endforeach;?>
          </select>
        </div>
 
@@ -69,7 +80,5 @@ else:
     echo "Nenhum Produto Foi Encontrado";
 
 endif;
-
-
 
 ?>

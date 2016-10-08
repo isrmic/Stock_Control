@@ -13,7 +13,7 @@
               </div>
 
 
-              <div class="form-group col-md-3">
+              <div class="form-group col-md-2">
                 <label for="campo2">Preço : </label>
                 <input type="number" step="0.01" name = "price_prod" required = "require" class="form-control" id="campo3">
               </div>
@@ -24,10 +24,15 @@
               <input type="number" name = "count_prod" required = "require" class="form-control" id="campo3">
             </div>
 
+            <div class="form-group col-md-3">
+              <label for="campo3">Código Produto : </label>
+              <input type="text" name = "code_prod" maxlength = "16" required = "require" class="form-control" id="campo4">
+            </div>
+
             <div class="form-group col-md-2">
-              <label for="campo3">Fornecedor : </label>
-              <select name = "provider" class="form-control">
-                  <option value="NULL"> SELECT </option>
+              <label for="campo5">Fornecedor : </label>
+              <select id = "campo5" name = "provider" class="form-control">
+                  <option value="0"> SELECT </option>
                   <?php foreach($providers as $provider):?>
                     <option value = "<?php echo $provider->ID; ?>"> <?php echo $provider->Company; ?> </option>
                   <?php endforeach;?>

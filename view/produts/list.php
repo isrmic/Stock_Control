@@ -6,9 +6,10 @@
 
      $page = parent::Get("page");
      $page = $page["page"] ?? 1;
-
+     $minprod = [20, false];
 
      if(!empty($produtos)): ?>
+
      <table class = "table table-striped table-bordered table-hover">
 
 
@@ -16,11 +17,14 @@
     <tr class = "">
 
       <tr>
-        
+
         <td> Nome </td>
         <td> Preço </td>
         <td> Descrição </td>
         <td> Quantidade </td>
+
+
+
 
       </tr>
 
@@ -29,28 +33,36 @@
 
 
 
-      <td> <?php echo $produto->Name; ?> </td>
-      <td style = "width:110px;"> R$ <?php echo number_format($produto->Price, 2, ',', ' '); ?> </td>
-      <td> <?php echo $produto->Description; ?>  </td>
-      <td> <?php echo $produto->Count_P; ?> </td>
+          <td> <?php echo $produto->Name; ?></td>
+          <td style = "width:120px;"> R$ <?php echo number_format($produto->Price, 2, ',', ' '); ?> </td>
+          <td> <?php echo $produto->Description; ?>
+          </td>
 
-      <td>
-          <a class = "btn btn-inverse btn-xs" href="detail/<?php echo $produto->ID; ?>">
-              <span> View </span>
-          </a>
-      </td>
+          <td class="<?php echo $produto->Count_P < $minprod[0] ? 'alert alert-danger' : ''; ?>"> <?php echo $produto->Count_P; ?> </td>
 
-      <td>
-          <a class = "btn btn-inverse btn-xs" href = "edit/<?php echo $produto->ID; ?>">
-            <span> Edit </span>
-          </a>
-      </td>
+          <td>
+              <a class = "btn btn-inverse btn-xs" href="detail/<?php echo $produto->ID; ?>">
+                  <span> View </span>
+              </a>
+          </td>
 
-      <td>
-          <a class = "btn btn-inverse btn-xs" href = "remove/<?php echo $produto->ID; ?>">
-            <span> Remove </span>
-          </a>
-      </td>
+          <td>
+              <a class = "btn btn-inverse btn-xs" href = "edit/<?php echo $produto->ID; ?>">
+                <span> Edit </span>
+              </a>
+          </td>
+
+          <td>
+              <a class = "btn btn-inverse btn-xs" href = "remove/<?php echo $produto->ID; ?>">
+                <span> Remove </span>
+              </a>
+          </td>
+
+          <?php if($produto->Count_P < $minprod[0]): ?>
+
+              <td><span class="label label-danger"> Em Falta </span></td>
+
+          <?php endif; ?>
 
 
     </tr>
@@ -67,7 +79,10 @@
       <?php endfor; ?>
       <li class="next"><a href="?page=<?php echo $page < $produtos[0]->rows ? $page+1 : $page; ?>" class="fui-arrow-right"></a></li>
     </ul>
+
   </div>
+
+
 
 <?php
     else:
