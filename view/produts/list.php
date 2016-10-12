@@ -6,7 +6,7 @@
 
      $page = parent::Get("page");
      $page = $page["page"] ?? 1;
-     $minprod = [20, false];
+     #$minprod = [20, false];
 
      if(!empty($produtos)): ?>
 
@@ -22,9 +22,6 @@
         <td> Preço </td>
         <td> Descrição </td>
         <td> Quantidade </td>
-
-
-
 
       </tr>
 
