@@ -31,7 +31,7 @@ foreach($produto as $produto): ?>
          <label for="campo4">Código Produto : </label>
          <div class="input-group">
          <span class="input-group-addon" id="codebar"><i class="glyphicon glyphicon-barcode"></i></span>
-         <input type="text" name = "code_prod" aria-describedby="codebar" value = "<?php echo $produto->Code_Produt; ?>" required = "require" class="form-control" id="campo4">
+         <input type="text" name = "code_prod" aria-describedby="codebar" value = "<?php echo $produto->Code_Produt; ?>" maxlength = "16" required = "require" class="form-control" id="campo4">
        </div>
        </div>
 

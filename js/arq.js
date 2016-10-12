@@ -7,7 +7,7 @@
       $(elements).each(function(index, elm){
         $elm = $(elm);
           $elm.click(function(){
-            location.href = redirects[index] + "/" + this.dataset.id;
+            window.location.href = redirects[index] + "/" + this.dataset.id;
           });
       });
   }

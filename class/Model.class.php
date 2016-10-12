@@ -149,7 +149,7 @@ class ModelProduts extends DB{
           $count++;
         endforeach;
 
-        
+
         return $resultobj;
     }
 
@@ -166,13 +166,18 @@ class ModelProduts extends DB{
                 switch($param){
 
                   case "Select":
-                      $query = "SELECT * FROM produtos LIMIT ? , ? ";
+
+                      if($param2 == "pagination")
+                          $query = "SELECT * FROM produtos LIMIT ? , ? ";
+                      else if($param2 == "WhereName")
+                          $query = "SELECT * FROM produtos WHERE Name LIKE ?";
+
                   break;
 
                   case "Insert":
 
                       if($param2 == "produto"){
-                          $query = "INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`, `ProviderID`, `Code_Produt`)  values (?,?,?,?, NOW(), NOW()), ?, ? ";
+                          $query = "INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`, `ProviderID`, `Code_Produt`)  values (?,?,?,?, NOW(), NOW(), ?, ?) ";
                       }
 
                       else if($param2 == "fornecedor"){
