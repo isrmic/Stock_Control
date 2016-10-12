@@ -38,7 +38,7 @@
           <td> <?php echo $produto->Description; ?>
           </td>
 
-          <td class="<?php echo $produto->Count_P < $minprod[0] ? 'alert alert-danger' : ''; ?>"> <?php echo $produto->Count_P; ?> </td>
+          <td class="<?php echo $produto->Count_P < $produto->Min_Count ? 'alert alert-danger' : ''; ?>"> <?php echo $produto->Count_P; ?> </td>
 
           <td>
               <a class = "btn btn-inverse btn-xs" href="detail/<?php echo $produto->ID; ?>">
@@ -58,7 +58,7 @@
               </a>
           </td>
 
-          <?php if($produto->Count_P < $minprod[0]): ?>
+          <?php if($produto->Count_P < $produto->Min_Count): ?>
 
               <td><span class="label label-danger"> Em Falta </span></td>
 

@@ -24,7 +24,7 @@ class AplicationControll extends ModelP{
 
     public function add_prod(){
 
-        $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod", "provider", "code_prod"]);
+        $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod", "provider", "code_prod", "min_count"]);
 
         $key = Request::Post("key");
         if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
@@ -67,8 +67,8 @@ class AplicationControll extends ModelP{
     public function update_prod(){
 
 
-      $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "provider", "code_prod", "prod_ID"]);
-
+      $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "provider", "code_prod", "min_count", "prod_ID"]);
+      
       $key = Request::Post("key");
       if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
 

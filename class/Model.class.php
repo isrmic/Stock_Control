@@ -146,6 +146,7 @@ class ModelProduts extends DB{
           $resultobj[$count]->dataModified = $sprod->dataModified;
           $resultobj[$count]->ProviderID = $sprod->ProviderID;
           $resultobj[$count]->Code_Produt = $sprod->Code_Produt;
+          $resultobj[$count]->Min_Count = $sprod->Min_Count;
           $count++;
         endforeach;
 
@@ -177,7 +178,7 @@ class ModelProduts extends DB{
                   case "Insert":
 
                       if($param2 == "produto"){
-                          $query = "INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`, `ProviderID`, `Code_Produt`)  values (?,?,?,?, NOW(), NOW(), ?, ?) ";
+                          $query = "INSERT INTO produtos (`Name`, `Price` ,`Description`, `Count_P`, `insertData`, `dataModified`, `ProviderID`, `Code_Produt`, `Min_Count`)  values (?,?,?,?, NOW(), NOW(), ?, ?, ?) ";
                       }
 
                       else if($param2 == "fornecedor"){
@@ -191,7 +192,7 @@ class ModelProduts extends DB{
                   break;
 
                   case "Update":
-                      $query = "UPDATE produtos SET Name = ?, Price = ?, Description = ?, Count_P = ?, dataModified = NOW(), ProviderID = ?, Code_Produt = ? WHERE ID = ?";
+                      $query = "UPDATE produtos SET Name = ?, Price = ?, Description = ?, Count_P = ?, dataModified = NOW(), ProviderID = ?, Code_Produt = ?, Min_Count = ? WHERE ID = ?";
                   break;
 
                 }
@@ -220,7 +221,7 @@ class ModelProduts extends DB{
 
                         if($param2 == "produto"){
 
-                            $query = "INSERT INTO produtos (Name, Price ,Description, Count_P, insertData, dataModified, ProviderID, Code_Produt)  values ('{$param3["name_prod"]}', {$param3["price_prod"]},'{$param3["desc_prod"]}', {$param3["count_prod"]}, getdate(), getdate(), {$param3["provider"]}, '{$param3["code_prod"]}')";
+                            $query = "INSERT INTO produtos (Name, Price ,Description, Count_P, insertData, dataModified, ProviderID, Code_Produt, Min_Count)  values ('{$param3["name_prod"]}', {$param3["price_prod"]},'{$param3["desc_prod"]}', {$param3["count_prod"]}, getdate(), getdate(), {$param3["provider"]}, '{$param3["code_prod"]}', {$param3["min_count"]})";
                         }
                         else if($param2 == "fornecedor"){
                             $query = "INSERT INTO Providers (Name, Company ,Office, Location, City, Region, CEP, Country, Phone, Email)  values ('{$param3["name_prov"]}', '{$param3["company_prov"]}','{$param3["office_prov"]}', '{$param3["location_prov"]}', '{$param3["city_prov"]}', '{$param3["region_prov"]}', '{$param3["cep_prov"]}', '{$param3["country_prov"]}', '{$param3["phone_prov"]}', '{$param3["email_prov"]}')";
@@ -233,7 +234,7 @@ class ModelProduts extends DB{
                     break;
 
                     case "Update":
-                        $query = "UPDATE produtos SET Name = '{$param2['name_prod']}', Price = {$param2['price_prod']}, Description = '{$param2['desc_prod']}', Count_P = {$param2['Count_Prod']}, dataModified = getdate(), ProviderID = {$param2['provider']}, Code_Produt = '{$param2['code_prod']}' WHERE ID = ?";
+                        $query = "UPDATE produtos SET Name = '{$param2['name_prod']}', Price = {$param2['price_prod']}, Description = '{$param2['desc_prod']}', Count_P = {$param2['Count_Prod']}, dataModified = getdate(), ProviderID = {$param2['provider']}, Code_Produt = '{$param2['code_prod']}', Min_Count = {$param2['min_count']} WHERE ID = ?";
                     break;
 
                   }

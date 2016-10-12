@@ -49,5 +49,6 @@ use stock_control;
 
 alter table produtos
 
-add ProviderID int,
-add Code_produt nvarchar(16)
+add ProviderID int(8),
+add Code_produt nvarchar(16),
+add Min_Count int(11)

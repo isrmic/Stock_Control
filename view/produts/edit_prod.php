@@ -27,6 +27,11 @@ foreach($produto as $produto): ?>
          <input type="number" name = "Count_Prod" value = "<?php echo $produto->Count_P; ?>" required = "require" class="form-control" id="campo3">
        </div>
 
+       <div class="form-group col-md-2">
+         <label for="min_c">Minimo : </label>
+         <input type="number" name = "min_count" value = "<?php echo $produto->Min_Count; ?>" required = "require" class="form-control" id="min_c">
+       </div>
+
        <div class="form-group col-md-3">
          <label for="campo4">Código Produto : </label>
          <div class="input-group">
