@@ -8,6 +8,7 @@
         $elm = $(elm);
           $elm.click(function(){
             window.location.href = redirects[index] + "/" + this.dataset.id;
+            
           });
       });
   }

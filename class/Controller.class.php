@@ -27,7 +27,7 @@ class AplicationControll extends ModelP{
         $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "count_prod", "provider", "code_prod", "min_count"]);
 
         $key = Request::Post("key");
-        if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
+        if($key["key"] === "55FAF772A5E8ED8E5CC729CD37606403"){
             $insert = parent::addnewProd($Request);
 
             if($insert){
@@ -44,15 +44,22 @@ class AplicationControll extends ModelP{
         }
     }
 
-    public function remove_prod($id){
+    public function remove_prod(){
 
-      $remove = parent::removeProd($id);
+      $id_key = Request::Post(["prodID_del", "key"]);
 
-      if($remove){
-          header("location: /stock_control/produtos");
-      }
-      else {
-          echo "Falha Ao Tentar Remover Produto";
+      if($id_key["key"] === "55FAF772A5E8ED8E5CC729CD37606403"){
+
+          $remove = parent::removeProd($id_key["prodID_del"]);
+
+          if($remove){
+              header("location: /stock_control/produtos");
+          }
+          else {
+              echo "Falha Ao Tentar Remover Produto";
+          }
+      }else{
+          header("location: /stock_control");
       }
 
     }

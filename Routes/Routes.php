@@ -39,10 +39,10 @@
 
     });
 
-    Route::Get("remove/{id}", function($id){
+    Route::Post("removeprod", function(){
 
         $controll = new Controll();
-        $controll->remove_prod($id);
+        $controll->remove_prod();
 
     });
 

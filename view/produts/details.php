@@ -47,10 +47,21 @@
 
 <div class = "row">
 
-    <input type = "button" id = "edit" class = "btn btn-warning" data-id = "<?php echo $produto->ID; ?>" value  = "Editar">
-    <input type = "button" id = "remove" class = "btn btn-danger" data-id = "<?php echo $produto->ID; ?>" value  = "Remove">
-    <input type = "button" id = "infojson" class = "btn btn-info" data-id = "<?php echo $produto->ID; ?>" value  = "Json">
-    <a type = "button" href = "../produtos" class = "btn btn-default"> Voltar </a>
+    <form action="/stock_control/removeprod" method="post">
+        <input type = "button" id = "edit" class = "btn btn-warning" data-id = "<?php echo $produto->ID; ?>" value  = "Editar">
+
+
+          <input type="hidden" name = "prodID_del" value = "<?php echo $produto->ID; ?>">
+          <input type="hidden" name = "key" value = "55FAF772A5E8ED8E5CC729CD37606403">
+          <button class = "btn btn-danger" >
+            <span> Remove </span>
+          </button>
+
+
+        <a class = "btn btn-info" href = "../produtos/json/<?php echo $produto->ID; ?>" > json </a>
+        <a href = "../produtos" class = "btn btn-default"> Voltar </a>
+
+    </form>
 
 </div>
 

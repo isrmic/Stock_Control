@@ -50,9 +50,14 @@
           </td>
 
           <td>
-              <a class = "btn btn-inverse btn-xs" href = "remove/<?php echo $produto->ID; ?>">
+            <form action="/stock_control/removeprod" method="post">
+              <input type="hidden" name = "prodID_del" value = "<?php echo $produto->ID; ?>">
+              <input type="hidden" name = "key" value = "55FAF772A5E8ED8E5CC729CD37606403">
+              
+              <button class = "btn btn-inverse btn-xs" >
                 <span> Remove </span>
-              </a>
+              </button>
+            </form>
           </td>
 
           <?php if($produto->Count_P < $produto->Min_Count): ?>
