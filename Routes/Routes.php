@@ -101,7 +101,7 @@
         $controll->prov_json();
   });
 
-	Route::Get("404", function($id){
+	Route::GP("404", function($id){
 
 		$controll = new Controll($id);
 		$controll->NotFound_404();

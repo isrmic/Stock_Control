@@ -68,7 +68,7 @@ class AplicationControll extends ModelP{
 
 
       $Request = Request::Post(["name_prod", "price_prod", "desc_prod", "Count_Prod", "provider", "code_prod", "min_count", "prod_ID"]);
-      
+
       $key = Request::Post("key");
       if($key["key"] == "55FAF772A5E8ED8E5CC729CD37606403"){
 
@@ -135,13 +135,21 @@ class AplicationControll extends ModelP{
 
     public function json($id = null, $key = null){
 
-    		$query = $id == null ? "SELECT * FROM produtos" : "SELECT * FROM produtos WHERE ID = ?";
-    		$select = parent::prepar($query);
-    		$id != null ? $select->opt($id) : null;
-        $select->exec();
+        $nameprod = Request::Get("prod");
 
-        $json = $select->ResultJson();
-        echo $json;
+        $condiction = !empty($nameprod["prod"]);
+
+    		$queryresult = $id == null ? $condiction ? "SELECT * FROM produtos WHERE Name LIKE ? " : "SELECT * FROM produtos" : parent::get_json_with_prov($id);
+
+    		$id == null ? $select = parent::prepar($queryresult): null;
+        $opt = "%{$nameprod["prod"]}%";
+
+        $condiction ? $select->opt($opt): null;
+
+        $id == null ? $select->exec()   : null;
+
+        $result = $id == null ? $json = $select->ResultJson() : $queryresult;
+        echo $result;
 
     }
 

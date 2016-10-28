@@ -154,6 +154,28 @@ class ModelProduts extends DB{
         return $resultobj;
     }
 
+    public function get_json_with_prov($id){
+
+        $resultobj = [];
+
+
+        $DB = new DB();
+        $queryprod  = "SELECT * FROM produtos WHERE ID = ?";
+        $queryprov  = "SELECT ID, Name, Company FROM Providers";
+
+        $selectprod =  parent::prepar($queryprod);
+        $selectprov =  $DB->prepar($queryprov);
+
+        $selectprod->opt($id, PDO::PARAM_INT);
+        $selectprod->exec();
+        $selectprov->exec();
+
+        $resultobj = $selectprod->AllObj();
+        $resultobj[0]->prov = $selectprov->AllObj();
+
+        return json_encode($resultobj, JSON_UNESCAPED_UNICODE);
+    }
+
     private function ReturnQueryString($param, $param2 = null, $param3 = null){
 
         $query = null;
